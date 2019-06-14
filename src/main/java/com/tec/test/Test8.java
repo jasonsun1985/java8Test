@@ -1,9 +1,13 @@
 package com.tec.test;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.google.common.collect.Lists;
 
@@ -18,6 +22,31 @@ public class Test8 {
 		testSkip();
 		testComprehensive();
 		testFlatMap();
+		testPredicate();
+		testReduce();
+	}
+	private static void testReduce() {
+		int result1 = Stream.of(1,2,3,4,5).reduce(2, (x,y)->x*y);
+		System.out.println(result1);
+		Optional<Integer> result2 = Stream.of(1,2,3,4,5).reduce((x,y)->x*y);
+		System.out.println(result2.orElse(-1));
+		
+	}
+
+	private static void testPredicate() {
+		List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,67,87,123,21,32,99);
+		List<Integer> newList = getNewList(list,Test8::cal);
+		System.out.println(newList);
+	}
+
+	private static List<Integer> getNewList(List<Integer> list, Predicate<Integer> num) {
+		return list.stream()
+				.filter(num)
+				.collect(toList());
+	}
+
+	private static boolean cal(Integer num) {
+		return num % 3 == 0;
 	}
 
 	private static void testFlatMap() {

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import com.google.common.collect.Lists;
@@ -70,11 +71,12 @@ public class Test8 {
 					String[] arr = item.split(" ");
 					return Arrays.asList(arr).stream();
 				})
+				.collect(toList())
 				// 根据每一项的HashCode和equals方法做去重操作
 //				.distinct()
 				// 打印每一项
 				.forEach(item -> System.out.println(item));
-		System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+		System.out.println("||||||||||||||||||||||||||||||||testFlatMap|||||||||||||||||||||||||||||");
 	}
 
 	private static void testComprehensive() {
@@ -93,26 +95,28 @@ public class Test8 {
 		                //6,8,10,12
 		                .sum());
 		                //36
-		System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+		System.out.println("|||||||||||||||||||||||||||||||||testComprehensive||||||||||||||||||||||||||||");
 	}
-
+	/**
+	 * 返回一个丢弃原Stream的前N个元素后剩下元素组成的新Stream，如果原Stream中包含的元素个数小于N，那么返回空Stream
+	 */
 	private static void testSkip() {
 		List<Integer> nums = Lists.newArrayList(18,2,3,4,5,6,7,50,100);
 		nums.stream().skip(6).forEach(s->System.out.println(s));
-		System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+		System.out.println("|||||||||||||||||||||||||||||||||testSkip||||||||||||||||||||||||||||");
 	}
 
 	private static void testLimit() {
 		List<Integer> nums = Lists.newArrayList(18,2,3,4,5,6,7,50,100);
 		nums.stream().limit(6).forEach(System.out::println);
-		System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+		System.out.println("|||||||||||||||||||||||||||||||||testLimit||||||||||||||||||||||||||||");
 	}
 
 	private static void testMap() {
 		List<Integer> nums = Lists.newArrayList(50,100);
 //		nums.stream().peek(e -> System.out.println(e*100));
 		nums.stream().map(n -> "成绩"+n.toString()).forEach(System.out::println);
-		System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+		System.out.println("|||||||||||||||||||||||||||||||||||testMap||||||||||||||||||||||||||");
 		
 	}
 
@@ -124,13 +128,13 @@ public class Test8 {
 			} 
 			return "其他";
 		}).forEach(System.out::println);
-		System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+		System.out.println("||||||||||||||||||||||||||||||||||||testFilter|||||||||||||||||||||||||");
 	}
 
 	private static void testDistinct() {
 		List<String> names = Lists.newArrayList("A","B","A");
 		names.stream().distinct().collect(Collectors.toList()).forEach(System.out::println);
-		System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+		System.out.println("||||||||||||||||||||||||||||||||||||testDistinct|||||||||||||||||||||||||");
 	}
 
 	private static void testisPresent() {
@@ -142,7 +146,7 @@ public class Test8 {
 			System.out.println("name is : " + value);
 	    });
 		name.orElseGet(() -> "a");
-		System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+		System.out.println("|||||||||||||||||||||||||||||||||||||testisPresent||||||||||||||||||||||||");
 	}
 	
 	private static void testLambda() {
@@ -150,7 +154,7 @@ public class Test8 {
 		names.stream().map((String n1) -> {return  n1.toLowerCase();}).collect(Collectors.toList());
 		names.stream().map((n2) -> n2.toLowerCase()).collect(Collectors.toList());
 		names.stream().map(String::toLowerCase).collect(Collectors.toList());
-		System.out.println("|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+		System.out.println("|||||||||||||||||||||||||||||||||||||testLambda||||||||||||||||||||||||");
 	}
 	
 }

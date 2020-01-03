@@ -3,14 +3,19 @@ package com.tec.test;
 import static java.util.stream.Collectors.toList;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 public class Test8 {
 	public static void main(String[] args) {
@@ -25,6 +30,15 @@ public class Test8 {
 		testFlatMap();
 		testPredicate();
 		testReduce();
+		testFunction();
+	}
+	private static void testFunction() {
+	    BiFunction<String,String,Integer> biFun=(s1,s2)->s1.length()+s2.length();
+        Function<Integer, String> converter = (i) -> Integer.toString(i);
+        Function<Integer, String> converter1 = i -> Integer.toString(i);
+        Function<Integer,Double> area = (r)->{return Math.pow(r, 2)*Math.PI;};
+        System.out.println(area.apply(10));
+		
 	}
 	private static void testReduce() {
 		int result1 = Stream.of(1,2,3,4,5).reduce(2, (x,y)->x*y);
@@ -117,7 +131,6 @@ public class Test8 {
 //		nums.stream().peek(e -> System.out.println(e*100));
 		nums.stream().map(n -> "成绩"+n.toString()).forEach(System.out::println);
 		System.out.println("|||||||||||||||||||||||||||||||||||testMap||||||||||||||||||||||||||");
-		
 	}
 
 	private static void testFilter() {

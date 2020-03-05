@@ -193,17 +193,6 @@ public class Test8 {
         System.out.println("|||||||||||||||||||||||||||||||||||testMap||||||||||||||||||||||||||");
     }
 
-    private static void testFilter() {
-        List<Integer> nums = Lists.newArrayList(50, 100);
-        nums.stream().filter(s -> s > 90).map(r -> {
-            if (r > 90) {
-                return "优";
-            }
-            return "其他";
-        }).collect(Collectors.toList()).forEach(System.out::println);
-        System.out.println("||||||||||||||||||||||||||||||||||||testFilter|||||||||||||||||||||||||");
-    }
-
     private static void testDistinct() {
         List<String> names = Lists.newArrayList("A", "B", "A");
         names.stream().distinct().collect(Collectors.toList()).forEach(System.out::println);
@@ -220,6 +209,17 @@ public class Test8 {
         });
         name.orElseGet(() -> "a");
         System.out.println("|||||||||||||||||||||||||||||||||||||testisPresent||||||||||||||||||||||||");
+    }
+
+    private static void testFilter() {
+        List<Integer> nums = Lists.newArrayList(50, 100);
+        nums.stream().filter(s -> s > 90).map(r -> {
+            if (r > 90) {
+                return "优";
+            }
+            return "其他";
+        }).collect(Collectors.toList()).forEach(System.out::println);
+        System.out.println("||||||||||||||||||||||||||||||||||||testFilter|||||||||||||||||||||||||");
     }
 
     private static void testLambda() {

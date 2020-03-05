@@ -218,6 +218,7 @@ public class Test8 {
         name.ifPresent((value) -> {
             System.out.println("name is : " + value);
         });
+
         name.orElseGet(() -> "a");
         System.out.println("|||||||||||||||||||||||||||||||||||||testisPresent||||||||||||||||||||||||");
     }

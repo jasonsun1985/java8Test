@@ -35,7 +35,11 @@ public class Test8 {
         testColon();
         testSupplier();
         testInstant();
+        testBranch();
 
+    }
+
+    private static void testBranch() {
     }
 
     private static void testInstant() {

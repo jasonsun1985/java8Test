@@ -23,7 +23,6 @@ public class Test8 {
         testLambda();
         testisPresent();
         testDistinct();
-        testFilter();
         testMap();
         testLimit();
         testSkip();

@@ -181,18 +181,6 @@ public class Test8 {
         System.out.println("|||||||||||||||||||||||||||||||||testLimit||||||||||||||||||||||||||||");
     }
 
-    private static void testMap() {
-        List<Integer> nums = Lists.newArrayList(50, 100);
-//		nums.stream().peek(e -> System.out.println(e*100));
-        nums.stream().map(n -> "成绩" + n.toString()).forEach(System.out::println);
-        nums.stream().map(m -> {
-            Map<String, Integer> map = new HashMap<>();
-            map.put("A", m);
-            return map;
-        }).collect(toList()).forEach(r -> System.out.println(r));
-        System.out.println("|||||||||||||||||||||||||||||||||||testMap||||||||||||||||||||||||||");
-    }
-
     private static void testFilter() {
         List<Integer> nums = Lists.newArrayList(50, 100);
         nums.stream().filter(s -> s > 90).map(r -> {
@@ -222,19 +210,34 @@ public class Test8 {
         System.out.println("|||||||||||||||||||||||||||||||||||||testisPresent||||||||||||||||||||||||");
     }
 
+    private static void testMap() {
+        List<Integer> nums = Lists.newArrayList(50, 100);
+//		nums.stream().peek(e -> System.out.println(e*100));
+        nums.stream().map(n -> "成绩" + n.toString()).forEach(System.out::println);
+        nums.stream().map(m -> {
+            Map<String, Integer> map = new HashMap<>();
+            map.put("A", m);
+            return map;
+        }).collect(toList()).forEach(r -> System.out.println(r));
+        System.out.println("|||||||||||||||||||||||||||||||||||testMap||||||||||||||||||||||||||");
+    }
+
     private static void testLambda() {
         List<String> names = Lists.newArrayList("A", "B");
         names.stream().map((String n1) -> {
             return n1.toLowerCase();
-        }).collect(Collectors.toList());
-        names.stream().map((n2) -> n2.toLowerCase()).collect(Collectors.toList());
-        names.stream().map(String::toLowerCase).collect(Collectors.toList());
+        }).collect(toList());
+        names.stream().map((n2) -> n2.toLowerCase()).collect(toList());
+        names.stream().map(String::toLowerCase).collect(toList());
         System.out.println(Optional.ofNullable(null).orElse(10));
 
-        System.out.println("|||||||||||||||||||||||||||||||||||||testLambda||||||||||||||||||||||||");
         consumer1.accept("asdf");
         Supplier<Integer> integerSupplier = () -> new Random().nextInt();
         integerSupplier.get();
+        System.out.println(Math.ceil(159.6));
+        System.out.println(Math.round(159.6));
+        System.out.println("|||||||||||||||||||||||||||||||||||||testLambda||||||||||||||||||||||||");
+
         
     }
 
